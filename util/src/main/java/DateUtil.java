@@ -1071,4 +1071,25 @@ public class DateUtil {
         }
         return 0L;
     }
+
+    /**
+     * @author     : YangChunLong
+     * @date       : Created in 2019/9/29 10:52
+     * @description: 获取下 nexthour 个小时的 第 minute 分钟的时间戳
+     * @modified By:
+     * @Param: nextHour 第 nexthour 个小时
+     * @Param: minute 第 minute 分钟
+     * @return     : java.lang.Long
+     */
+    public static Date getMinuteOfNextHour(int nextHour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        int m = calendar.get(Calendar.MINUTE);
+        int s = calendar.get(Calendar.SECOND);
+        int mill = calendar.get(Calendar.MILLISECOND);
+        calendar.add(Calendar.HOUR, nextHour);
+        calendar.add(Calendar.MINUTE, minute-m);
+        calendar.add(Calendar.SECOND,-s);
+        calendar.add(Calendar.MILLISECOND,-mill);
+        return calendar.getTime();
+    }
 }
